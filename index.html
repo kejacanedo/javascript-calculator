@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            background: lightblue;
+            font-family: Arial, sans-serif;
+            transition: background .1s;
+        }
+        .textField {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, .6);
+            font-size: 1.2em;
+            height: 60px;
+            text-align: right;
+            padding: 10px;
+            border-radius: 2px;
+            box-shadow: inset 0 5px 8px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        table
+        {
+            border: 2px solid black;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 12%;
+        }
+        .btnKeys
+        {
+            height: 50px;
+            width: 100px;
+            font-size: 16px;
+            font-family: "Arial Bold", Gadget, Arial, sans-serif;
+            font-weight: 700;
+        }
+        .btnDel
+        {
+            height: 50px;
+            width: 205px;
+            font-family: "Arial Bold", Gadget, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            background: #FF8A80
+        }
+        .btnClr
+        {
+            height: 50px;
+            width: 205px;
+            font-family: "Arial Bold", Gadget, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            background: #FF8A80
+        }
+    </style>
+</head>
+<body>
+    <!--Calculator using table-->
+    <table>
+        <tr>
+            <td class='textField' colspan="4">
+                <p id='textField'></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button id='btnClr' class='btnClr'>AC</button>
+            </td>
+            <td colspan="2">
+                <button id='btnDel' class='btnDel'>CE</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id='btn7' class='btnKeys'>7</button>
+            </td>
+            <td>
+                <button id='btn8' class='btnKeys'>8</button>
+            </td>
+            <td>
+                <button id='btn9' class='btnKeys'>9</button>
+            </td>
+            <td>
+                <button id='btnDiv' class='btnKeys'>/</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id='btn4' class='btnKeys'>4</button>
+            </td>
+            <td>
+                <button id='btn5' class='btnKeys'>5</button>
+            </td>
+            <td>
+                <button id='btn6' class='btnKeys'>6</button>
+            </td>
+            <td>
+                <button id='btnMul' class='btnKeys'>*</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id='btn1' class='btnKeys'>1</button>
+            </td>
+            <td>
+                <button id='btn2' class='btnKeys'>2</button>
+            </td>
+            <td>
+                <button id='btn3' class='btnKeys'>3</button>
+            </td>
+            <td>
+                <button id='btnAdd' class='btnKeys'>+</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id='btn0' class='btnKeys'>0</button>
+            </td>
+            <td>
+                <button id='btnDec' class='btnKeys'>.</button>
+            </td>
+            <td>
+                <button id='btnEq' class='btnKeys'>=</button>
+            </td>
+            <td>
+                <button id='btnSub' class='btnKeys'>-</button>
+            </td>
+        </tr>
+    </table>
+    <!--javascript-->
+    <script>
+        //function to update textfield
+        function updateTextField(elementID, value)
+        {
+            curr = document.getElementById(elementID).innerHTML
+            document.getElementById(elementID).innerHTML = curr + value;
+        }
+        //if a user input opration first textfield will automimatically update to 0 + operation(input by the user)
+        function addOperation(operation)
+        {
+            curr = document.getElementById('textField').innerHTML 
+            if(curr=='')
+            {
+                updateTextField('textField', '0' + operation)
+            }
+            else if(curr.substr(curr.length - 1) != ' ')
+            {
+                updateTextField('textField', operation)
+            }
+        }
+        //events to function keyboard input
+        window.addEventListener('keydown', (e) => {
+            if(e.key === "."){
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === "0")
+            {
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === "1")
+            {
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === "2")
+            {
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === "3")
+            {
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === "4")
+            {
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === "5")
+            {
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === "6")
+            {
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === "7")
+            {
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === "8")
+            {
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === "9")
+            {
+            updateTextField('textField', e.key)
+            }
+            else if(e.key === 'End' || e.key === 'Backspace'){
+                curr = document.getElementById('textField').innerHTML
+            if(curr.substr(curr.length - 1) == ' ')
+            {
+                document.getElementById('textField').innerHTML = curr.slice(0, -3)               
+            }
+            else
+            {
+                document.getElementById('textField').innerHTML = curr.slice(0, -1)               
+            }
+            }
+            else if(e.key === "Delete")
+            {
+                document.getElementById('textField').innerHTML = "";
+            }
+            else if(e.key === "*")
+            {
+                addOperation(' * ');
+            }
+            else if(e.key === "/")
+            {
+                addOperation(' / ');
+            }
+            else if(e.key === "+")
+            {
+                addOperation(' + ');
+            }
+            else if(e.key === "-")
+            {
+                addOperation(' - ');
+            }
+            else if(e.key === "Enter")
+            {
+                curr = document.getElementById('textField').innerHTML
+            if(curr.substr(curr.length - 1) == ' ')
+            {
+                curr = curr + '0'
+            }
+            document.getElementById('textField').innerHTML = "";
+            updateTextField('textField', eval(curr))
+            }
+            console.log(e);
+        });
+        //events to function onclick buttons 
+        const btnDec = document.getElementById('btnDec');
+        btnDec.addEventListener('click',  (e) => {
+            updateTextField('textField', '.')
+        });
+
+        const btn0 = document.getElementById('btn0');
+        btn0.addEventListener('click', (e) => {
+            updateTextField('textField', '0')
+        });
+
+        const btn1 = document.getElementById('btn1');
+        btn1.addEventListener('click', (e) => {
+            updateTextField('textField', '1')
+        });
+
+        const btn2 = document.getElementById('btn2');
+        btn2.addEventListener('click', (e) => {
+            updateTextField('textField', '2')
+        });
+        
+        const btn3 = document.getElementById('btn3');
+        btn3.addEventListener('click', (e) => {
+            updateTextField('textField', '3')
+        });
+        
+        const btn4 = document.getElementById('btn4');
+        btn4.addEventListener('click', (e) => {
+            updateTextField('textField', '4')
+        });
+        
+        const btn5 = document.getElementById('btn5');
+        btn5.addEventListener('click', (e) => {
+            updateTextField('textField', '5')
+        });
+        
+        const btn6 = document.getElementById('btn6');
+        btn6.addEventListener('click', (e) => {
+            updateTextField('textField', '6')
+        });
+        
+        const btn7 = document.getElementById('btn7');
+        btn7.addEventListener('click', (e) => {
+            updateTextField('textField', '7')
+        });
+        
+        const btn8 = document.getElementById('btn8');
+        btn8.addEventListener('click', (e) => {
+            updateTextField('textField', '8')
+        });
+        
+        const btn9 = document.getElementById('btn9');
+        btn9.addEventListener('click', (e) => {
+            updateTextField('textField', '9')
+        });
+
+        const btnMul = document.getElementById('btnMul');
+        btnMul.addEventListener('click', (e) => {
+            addOperation(' * ');
+        });
+        
+        const btnDiv = document.getElementById('btnDiv');
+        btnDiv.addEventListener('click', (e) => {
+            addOperation(' / ');
+        });
+
+        const btnAdd = document.getElementById('btnAdd');
+        btnAdd.addEventListener('click', (e) => {
+            addOperation(' + ');
+        });
+
+        const btnSub = document.getElementById('btnSub');
+        btnSub.addEventListener('click', (e) => {
+            addOperation(' - ');
+        });
+
+        const btnClr = document.getElementById('btnClr');
+        btnClr.addEventListener('click', (e) => {
+            document.getElementById('textField').innerHTML = "";
+        });
+
+        const btnDel = document.getElementById('btnDel');
+        btnDel.addEventListener('click', (e) => {
+            curr = document.getElementById('textField').innerHTML
+            if(curr.substr(curr.length - 1) == ' ')
+            {
+                document.getElementById('textField').innerHTML = curr.slice(0, -3)               
+            }
+            else
+            {
+                document.getElementById('textField').innerHTML = curr.slice(0, -1)               
+            }
+        });
+        //Eval automatic calculation 
+        const btnEq = document.getElementById('btnEq');
+        btnEq.addEventListener('click', (e) => {
+            curr = document.getElementById('textField').innerHTML
+            if(curr.substr(curr.length - 1) == ' ')
+            {
+                curr = curr + '0'
+            }
+            document.getElementById('textField').innerHTML = "";
+            updateTextField('textField', eval(curr))
+        });
+    </script>
+</body>
+</html>
