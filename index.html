@@ -37,7 +37,7 @@
             font-family: "Arial Bold", Gadget, Arial, sans-serif;
             font-weight: 700;
         }
-        .btnDel
+        #btnDel
         {
             height: 50px;
             width: 205px;
@@ -46,7 +46,7 @@
             font-weight: 700;
             background: #FF8A80
         }
-        .btnClr
+        #btnClr
         {
             height: 50px;
             width: 205px;
@@ -67,10 +67,10 @@
         </tr>
         <tr>
             <td colspan="2">
-                <button id='btnClr' class='btnClr'>AC</button>
+                <button id='btnClr' class='btnKeys'>AC</button>
             </td>
             <td colspan="2">
-                <button id='btnDel' class='btnDel'>CE</button>
+                <button id='btnDel' class='btnKeys'>CE</button>
             </td>
         </tr>
         <tr>
@@ -133,12 +133,20 @@
     <!--javascript-->
     <script>
         //function to update textfield
+        //Max input is 36
         function updateTextField(elementID, value)
         {
             curr = document.getElementById(elementID).innerHTML
-            document.getElementById(elementID).innerHTML = curr + value;
+            if(curr.length < 36)
+            {
+                document.getElementById(elementID).innerHTML = curr + value;
+            }
+            if(curr.length === 36)
+            {
+                alert('Max Input!')
+            }
         }
-        //if a user input opration first textfield will automimatically update to 0 + operation(input by the user)
+        //if a user input operation first textfield will automimatically update to 0 + operation(pressed by the user)
         function addOperation(operation)
         {
             curr = document.getElementById('textField').innerHTML 
@@ -196,7 +204,8 @@
             {
             updateTextField('textField', e.key)
             }
-            else if(e.key === 'End' || e.key === 'Backspace'){
+            else if(e.key === 'End' || e.key === 'Backspace')
+            {
                 curr = document.getElementById('textField').innerHTML
             if(curr.substr(curr.length - 1) == ' ')
             {
@@ -242,7 +251,7 @@
         //events to function onclick buttons 
         const btnDec = document.getElementById('btnDec');
         btnDec.addEventListener('click',  (e) => {
-            updateTextField('textField', '.')
+            updateTextField('textField', '.')           
         });
 
         const btn0 = document.getElementById('btn0');
